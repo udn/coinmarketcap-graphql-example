@@ -2,7 +2,6 @@ defmodule CoinMarketCap.Exchanges.Exchanger do
   use Ecto.Schema
   import Ecto.Changeset
 
-
   schema "exchanger" do
     field :name, :string
     field :total_volume, :float

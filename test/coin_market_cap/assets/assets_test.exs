@@ -6,9 +6,33 @@ defmodule CoinMarketCap.AssetsTest do
   describe "coins" do
     alias CoinMarketCap.Assets.Coin
 
-    @valid_attrs %{change: 120.5, market_cap: 120.5, name: "some name", price: 120.5, supply: 120.5, symbol: "some symbol", volume: 120.5}
-    @update_attrs %{change: 456.7, market_cap: 456.7, name: "some updated name", price: 456.7, supply: 456.7, symbol: "some updated symbol", volume: 456.7}
-    @invalid_attrs %{change: nil, market_cap: nil, name: nil, price: nil, supply: nil, symbol: nil, volume: nil}
+    @valid_attrs %{
+      change: 120.5,
+      market_cap: 120.5,
+      name: "some name",
+      price: 120.5,
+      supply: 120.5,
+      symbol: "some symbol",
+      volume: 120.5
+    }
+    @update_attrs %{
+      change: 456.7,
+      market_cap: 456.7,
+      name: "some updated name",
+      price: 456.7,
+      supply: 456.7,
+      symbol: "some updated symbol",
+      volume: 456.7
+    }
+    @invalid_attrs %{
+      change: nil,
+      market_cap: nil,
+      name: nil,
+      price: nil,
+      supply: nil,
+      symbol: nil,
+      volume: nil
+    }
 
     def coin_fixture(attrs \\ %{}) do
       {:ok, coin} =
