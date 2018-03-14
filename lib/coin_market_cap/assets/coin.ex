@@ -2,6 +2,7 @@ defmodule CoinMarketCap.Assets.Coin do
   use Ecto.Schema
   import Ecto.Changeset
   alias CoinMarketCap.Content.AnalyticsReview
+  alias CoinMarketCap.Exchanges.Exchnager
 
   schema "coins" do
     field :change, :float
@@ -13,6 +14,7 @@ defmodule CoinMarketCap.Assets.Coin do
     field :volume, :float
 
     has_many(:analytics_reviews, AnalyticsReview)
+    many_to_many :exchangers, Exchanger, join_through: "exchanges_coins"
 
     timestamps()
   end
