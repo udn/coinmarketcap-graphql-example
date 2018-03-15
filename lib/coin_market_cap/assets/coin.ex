@@ -14,7 +14,7 @@ defmodule CoinMarketCap.Assets.Coin do
     field :volume, :float
 
     has_many(:analytics_reviews, AnalyticsReview)
-    many_to_many :exchangers, Exchanger, join_through: "exchanges_coins"
+    many_to_many :exchangers, Exchanger, join_through: "exchangers_coins"
 
     timestamps()
   end
@@ -24,5 +24,6 @@ defmodule CoinMarketCap.Assets.Coin do
     coin
     |> cast(attrs, [:name, :symbol, :price, :market_cap, :volume, :supply, :change])
     |> validate_required([:name, :symbol, :price, :market_cap, :volume, :supply, :change])
+    |> put_assoc(:exchangers, attrs.exchangers)
   end
 end

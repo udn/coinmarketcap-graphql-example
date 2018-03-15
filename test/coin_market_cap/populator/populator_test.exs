@@ -3,7 +3,6 @@ defmodule CoinMarketCap.PopulatorTest do
 
   import CoinMarketCap.Factory
 
-  alias CoinMarketCap.Assets.Coin
   alias CoinMarketCap.Populator
 
   test "&adapt_coin/1 should return adapted Coin structure" do
@@ -25,18 +24,18 @@ defmodule CoinMarketCap.PopulatorTest do
       "symbol" => "BTC",
       "total_supply" => "16920125.0"
     }
-    coin = %Coin{
+    coin = %{
       name: "Bitcoin",
       symbol: "BTC",
       change: -13.41,
-      market_cap: 133902654426,
+      market_cap: 133902654426.0,
       price: 7913.81,
       supply: 16920125.0,
       volume: 7234160000.0,
       exchangers: [exchanger]
     }
 
-    result = Populator.adapt_coin(cmc_coin)
+    result = Populator.adapt_coin(cmc_coin, [exchanger])
 
     assert coin === result
   end
