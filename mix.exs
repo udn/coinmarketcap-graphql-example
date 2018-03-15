@@ -41,7 +41,8 @@ defmodule CoinMarketCap.Mixfile do
       {:cowboy, "~> 1.0"},
       {:absinthe, "~> 1.4"},
       {:absinthe_plug, "~> 1.4"},
-      {:absinthe_phoenix, "~> 1.4"}
+      {:absinthe_phoenix, "~> 1.4"},
+      {:httpoison, "~> 1.0"}
     ]
   end
 
