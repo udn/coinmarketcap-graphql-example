@@ -4,6 +4,7 @@ defmodule CoinMarketCap.Populator do
   """
 
   alias CoinMarketCap.Assets.Coin
+  alias CoinMarketCap.Exchangers
 
 
   def populate() do
@@ -13,6 +14,7 @@ defmodule CoinMarketCap.Populator do
   end
 
   def adapt_coin(coin) do
+    exchangers = Exchangers.list_exchanger()
     %Coin{
       name: Map.get(coin, "name"),
       symbol: Map.get(coin, "symbol"),
@@ -22,6 +24,7 @@ defmodule CoinMarketCap.Populator do
       price: Map.get(coin, "price_usd") |> String.to_float(),
       supply: Map.get(coin, "total_supply") |> String.to_float(),
       volume: Map.get(coin, "24h_volume_usd") |> String.to_float(),
+      exchangers: exchangers
     }
   end
 end

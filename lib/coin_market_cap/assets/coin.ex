@@ -2,7 +2,7 @@ defmodule CoinMarketCap.Assets.Coin do
   use Ecto.Schema
   import Ecto.Changeset
   alias CoinMarketCap.Content.AnalyticsReview
-  alias CoinMarketCap.Exchanges.Exchnager
+  alias CoinMarketCap.Exchangers.Exchanger
 
   schema "coins" do
     field :change, :float

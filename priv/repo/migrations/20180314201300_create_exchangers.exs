@@ -1,8 +1,8 @@
-defmodule CoinMarketCap.Repo.Migrations.CreateExchanger do
+defmodule CoinMarketCap.Repo.Migrations.CreateExchangers do
   use Ecto.Migration
 
   def change do
-    create table(:exchanges) do
+    create table(:exchangers) do
       add :name, :string
       add :url, :string
       add :total_volume, :float

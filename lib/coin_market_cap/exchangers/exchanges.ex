@@ -1,4 +1,4 @@
-defmodule CoinMarketCap.Exchanges do
+defmodule CoinMarketCap.Exchangers do
   @moduledoc """
   The Exchanges context.
   """
@@ -6,7 +6,7 @@ defmodule CoinMarketCap.Exchanges do
   import Ecto.Query, warn: false
   alias CoinMarketCap.Repo
 
-  alias CoinMarketCap.Exchanges.Exchanger
+  alias CoinMarketCap.Exchangers.Exchanger
 
   @doc """
   Returns the list of exchanger.

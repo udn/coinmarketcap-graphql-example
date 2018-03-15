@@ -1,10 +1,13 @@
 defmodule CoinMarketCap.PopulatorTest do
   use CoinMarketCap.DataCase
 
+  import CoinMarketCap.Factory
+
   alias CoinMarketCap.Assets.Coin
   alias CoinMarketCap.Populator
 
   test "&adapt_coin/1 should return adapted Coin structure" do
+    exchanger = insert(:exchanger)
     cmc_coin = %{
       "24h_volume_usd" => "7234160000.0",
       "available_supply" => "16920125.0",
@@ -29,7 +32,8 @@ defmodule CoinMarketCap.PopulatorTest do
       market_cap: 133902654426,
       price: 7913.81,
       supply: 16920125.0,
-      volume: 7234160000.0
+      volume: 7234160000.0,
+      exchangers: [exchanger]
     }
 
     result = Populator.adapt_coin(cmc_coin)

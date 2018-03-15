@@ -1,14 +1,15 @@
-defmodule CoinMarketCap.Exchanges.Exchanger do
+defmodule CoinMarketCap.Exchangers.Exchanger do
   use Ecto.Schema
+
   import Ecto.Changeset
   alias CoinMarketCap.Assets.Coin
 
-  schema "exchanger" do
+  schema "exchangers" do
     field :name, :string
     field :total_volume, :float
     field :url, :string
 
-    many_to_many :coins, Coin, join_through: "exchanges_coins"
+    many_to_many :coins, Coin, join_through: "exchangers_coins"
 
     timestamps()
   end
