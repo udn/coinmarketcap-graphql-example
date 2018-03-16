@@ -24,5 +24,11 @@ defmodule CoinMarketCapWeb.Schema.AssetTypes do
     connection field :all_coins, node_type: :coin do
       resolve &Resolvers.Asset.all_coins/2
     end
+
+    field :coin, :coin do
+      arg :id, non_null :id
+
+      resolve parsing_node_ids(&Resolvers.Asset.coin/2, id: :coin)
+    end
   end
 end

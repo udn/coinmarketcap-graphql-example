@@ -39,6 +39,11 @@ defmodule CoinMarketCap.Assets do
   def get_coin!(id), do: Repo.get!(Coin, id)
 
   @doc """
+  Gets a single coin
+  """
+  def get_coin(id), do: Repo.get(Coin, id)
+
+  @doc """
   Creates a coin.
 
   ## Examples
