@@ -15,14 +15,22 @@ defmodule CoinMarketCapWeb.Schema.ContentTypes do
     field :coin, non_null(:coin)
   end
 
+  # It is best way to keep versionning simple
   object :create_analytics_review_payload do
+
+    @desc "Analytics review object"
     field :analytics_review, non_null(:analytics_review)
   end
 
   object :content_mutations do
     field :create_analytics_review, :create_analytics_review_payload do
+      @desc "Review's title"
       arg :title, non_null(:string)
+
+      @desc "Review's content"
       arg :content, non_null(:string)
+
+      @desc "ID of a coin"
       arg :coin, non_null(:id)
 
       resolve parsing_node_ids(&Resolvers.Content.create_analytics_review/2, coin: :coin)
@@ -37,6 +45,10 @@ defmodule CoinMarketCapWeb.Schema.ContentTypes do
         {:ok, topic: "*"}
       end
 
+      # this tells Absinthe to run any subscriptions with this field every time
+      # the :create_analytics_review mutation happens.
+      # It also has a topic function used to find what subscriptions care about
+      # this particular review
       trigger :create_analytics_review
 
       # this function is often not actually necessary, as the default resolver

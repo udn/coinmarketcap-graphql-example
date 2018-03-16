@@ -4,6 +4,7 @@ defmodule CoinMarketCapWeb.Schema.AssetTypes do
 
   alias CoinMarketCapWeb.Resolvers
 
+  # Using macro 'node' we brings ID to coin object automatically
   node object(:coin) do
     @desc "Coin's name"
     field :name, non_null(:string)
@@ -18,6 +19,8 @@ defmodule CoinMarketCapWeb.Schema.AssetTypes do
     field :market_cap, non_null(:integer)
   end
 
+  # This will automatically define two new types: :coin_connection
+  # and :coin_edge.
   connection(node_type: :coin)
 
   object :assets_queries do
@@ -26,8 +29,11 @@ defmodule CoinMarketCapWeb.Schema.AssetTypes do
     end
 
     field :coin, :coin do
+      @desc "Coin ID"
       arg :id, non_null(:id)
 
+
+      # &parsing_node_ids/2 automatically converts global id to intenal id
       resolve parsing_node_ids(&Resolvers.Asset.coin/2, id: :coin)
     end
   end

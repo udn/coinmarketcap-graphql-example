@@ -8,6 +8,8 @@ defmodule CoinMarketCapWeb.Schema do
   alias CoinMarketCap.Assets.Coin
   alias CoinMarketCap.Content.AnalyticsReview
 
+  # This will create an interface, :node that expects one field, :id,
+  # be defined — and that the ID will be a global identifier.
   node interface do
     resolve_type fn
       %Coin{}, _ ->
