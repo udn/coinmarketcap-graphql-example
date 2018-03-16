@@ -3,6 +3,9 @@ defmodule CoinMarketCapWeb.Schema.AssetTypes do
   use Absinthe.Relay.Schema.Notation, :modern
 
   alias CoinMarketCapWeb.Resolvers
+  alias CoinMarketCap.Assets
+
+  import Absinthe.Resolution.Helpers, only: [dataloader: 1]
 
   # Using macro 'node' we brings ID to coin object automatically
   node object(:coin) do
@@ -17,6 +20,9 @@ defmodule CoinMarketCapWeb.Schema.AssetTypes do
 
     @desc "Coin's market cap"
     field :market_cap, non_null(:integer)
+
+    @desc "Coin's exchangers"
+    field :exchangers, :exchanger |> list_of |> non_null, resolve: dataloader(Assets)
   end
 
   # This will automatically define two new types: :coin_connection
@@ -31,7 +37,6 @@ defmodule CoinMarketCapWeb.Schema.AssetTypes do
     field :coin, :coin do
       @desc "Coin ID"
       arg :id, non_null(:id)
-
 
       # &parsing_node_ids/2 automatically converts global id to intenal id
       resolve parsing_node_ids(&Resolvers.Asset.coin/2, id: :coin)

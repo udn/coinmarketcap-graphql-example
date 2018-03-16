@@ -17,7 +17,6 @@ defmodule CoinMarketCapWeb.Schema.ContentTypes do
 
   # It is best way to keep versionning simple
   object :create_analytics_review_payload do
-
     @desc "Analytics review object"
     field :analytics_review, non_null(:analytics_review)
   end
@@ -49,7 +48,7 @@ defmodule CoinMarketCapWeb.Schema.ContentTypes do
       # the :create_analytics_review mutation happens.
       # It also has a topic function used to find what subscriptions care about
       # this particular review
-      trigger :create_analytics_review
+      trigger(:create_analytics_review)
 
       # this function is often not actually necessary, as the default resolver
       # for subscription functions will just do what we're doing here.

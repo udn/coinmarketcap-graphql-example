@@ -4,9 +4,12 @@ defmodule CoinMarketCapWeb.Schema do
 
   import_types __MODULE__.AssetTypes
   import_types __MODULE__.ContentTypes
+  import_types __MODULE__.ExchangerTypes
 
+  alias CoinMarketCap.Assets
   alias CoinMarketCap.Assets.Coin
   alias CoinMarketCap.Content.AnalyticsReview
+  alias CoinMarketCap.Exchangers.Exchanger
 
   # This will create an interface, :node that expects one field, :id,
   # be defined — and that the ID will be a global identifier.
@@ -17,6 +20,9 @@ defmodule CoinMarketCapWeb.Schema do
 
       %AnalyticsReview{}, _ ->
         :analytics_review
+
+      %Exchanger{}, _ ->
+        :exchanger
 
       _, _ ->
         nil
@@ -33,5 +39,20 @@ defmodule CoinMarketCapWeb.Schema do
 
   subscription do
     import_fields :content_subscriptions
+  end
+
+  def context(ctx) do
+    loader =
+      Dataloader.new()
+      |> Dataloader.add_source(Assets, Assets.data())
+
+    # Foo source could be a Redis source
+    # |> Dataloader.add_source(Foo, Foo.data())
+
+    Map.put(ctx, :loader, loader)
+  end
+
+  def plugins do
+    [Absinthe.Middleware.Dataloader] ++ Absinthe.Plugin.defaults()
   end
 end

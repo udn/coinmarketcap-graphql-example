@@ -1,0 +1,12 @@
+
+
+query Bitcoin {
+    coin(id: "Q29pbjox") {
+        id
+        symbol
+        price
+        exchangers {
+            name
+        }
+    }
+}

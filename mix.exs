@@ -43,6 +43,7 @@ defmodule CoinMarketCap.Mixfile do
       {:absinthe_plug, "~> 1.4"},
       {:absinthe_phoenix, "~> 1.4"},
       {:absinthe_relay, "~> 1.4.0-rc or ~> 1.4"},
+      {:dataloader, "~> 1.0.0"},
       {:httpoison, "~> 1.0"},
       {:ex_machina, "~> 2.2"},
       {:mix_test_watch, "~> 0.5", only: :dev, runtime: false}
@@ -57,6 +58,7 @@ defmodule CoinMarketCap.Mixfile do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
+      "graphql.schema": ["loadpaths", "absinthe.schema.json"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate", "test"],

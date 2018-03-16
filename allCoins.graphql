@@ -1,0 +1,11 @@
+query topThreeCoins {
+    allCoins(first: 3) {
+        edges {
+            node {
+                id
+                name
+                price
+            }
+        }
+    }
+}
