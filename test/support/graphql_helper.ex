@@ -37,6 +37,12 @@ defmodule CoinMarketCap.GraphqlHelper do
         do: {Atom.to_string(key), parse_value(val)}
   end
 
+  def connection_model_to_result(model, fields) do
+    result = model_to_result(model, fields)
+
+    %{"node" => result}
+  end
+
   def build_conn do
     Phoenix.ConnTest.build_conn()
   end

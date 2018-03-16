@@ -3,7 +3,7 @@ defmodule CoinMarketCap.Resolvers.AssetResolverTest do
   use CoinMarketCap.DataCase
   import CoinMarketCap.Factory
 
-  test "all_corns query should return connection type" do
+  test "all_coins query should return connection type" do
     count = 3
     coins = insert_list(count, :coin)
 
@@ -28,8 +28,9 @@ defmodule CoinMarketCap.Resolvers.AssetResolverTest do
     assert response == %{
              "data" => %{
                "allCoins" => %{
-                 "edges" => Enum.map(coins, fn coin -> model_to_result(coin, query_fields) end),
-               },
+                 "edges" =>
+                   Enum.map(coins, fn coin -> connection_model_to_result(coin, query_fields) end)
+               }
              }
            }
   end

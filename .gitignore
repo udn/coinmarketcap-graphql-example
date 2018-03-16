@@ -16,3 +16,4 @@ erl_crash.dump
 /config/*.secret.exs
 *.iml
 .idea/*
+.elixir_ls/*
