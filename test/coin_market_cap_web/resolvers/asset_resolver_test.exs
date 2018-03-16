@@ -1,4 +1,4 @@
-defmodule CoinMarketCap.Resolvers.AssetResolverTest do
+defmodule CoinMarketCapWeb.Resolvers.AssetTest do
   @moduledoc false
   use CoinMarketCap.DataCase
   import CoinMarketCap.Factory

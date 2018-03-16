@@ -45,5 +45,4 @@ config :coin_market_cap, CoinMarketCap.Repo,
   hostname: "localhost",
   pool_size: 10
 
-config :mix_test_watch,
-  clear: true
+config :mix_test_watch, clear: true

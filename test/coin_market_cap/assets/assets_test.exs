@@ -17,7 +17,7 @@ defmodule CoinMarketCap.AssetsTest do
       supply: 120.5,
       symbol: "some symbol",
       volume: 120.5,
-      exchangers: [],
+      exchangers: []
     }
     @update_attrs %{
       change: 456.7,
@@ -27,7 +27,7 @@ defmodule CoinMarketCap.AssetsTest do
       supply: 456.7,
       symbol: "some updated symbol",
       volume: 456.7,
-      exchangers: [],
+      exchangers: []
     }
     @invalid_attrs %{
       change: nil,
@@ -37,7 +37,7 @@ defmodule CoinMarketCap.AssetsTest do
       supply: nil,
       symbol: nil,
       volume: nil,
-      exchangers: nil,
+      exchangers: nil
     }
 
     test "list_coins/0 returns all coins" do
