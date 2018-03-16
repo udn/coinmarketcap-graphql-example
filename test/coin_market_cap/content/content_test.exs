@@ -27,7 +27,9 @@ defmodule CoinMarketCap.ContentTest do
 
     test "get_analytics_review!/1 returns the analytics_review with given id" do
       analytics_review = analytics_review_fixture()
-      assert Content.get_analytics_review!(analytics_review.id) |> Repo.preload(:coin) == analytics_review
+
+      assert Content.get_analytics_review!(analytics_review.id) |> Repo.preload(:coin) ==
+               analytics_review
     end
 
     test "create_analytics_review/1 with valid data creates a analytics_review" do
@@ -59,7 +61,8 @@ defmodule CoinMarketCap.ContentTest do
       assert {:error, %Ecto.Changeset{}} =
                Content.update_analytics_review(analytics_review, @invalid_attrs)
 
-      assert analytics_review == Content.get_analytics_review!(analytics_review.id) |> Repo.preload(:coin)
+      assert analytics_review ==
+               Content.get_analytics_review!(analytics_review.id) |> Repo.preload(:coin)
     end
 
     test "delete_analytics_review/1 deletes the analytics_review" do

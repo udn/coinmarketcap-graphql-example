@@ -1,5 +1,6 @@
 defmodule CoinMarketCapWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :coin_market_cap
+  use Absinthe.Phoenix.Endpoint
 
   socket("/socket", CoinMarketCapWeb.UserSocket)
 

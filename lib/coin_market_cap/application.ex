@@ -11,7 +11,9 @@ defmodule CoinMarketCap.Application do
       # Start the Ecto repository
       supervisor(CoinMarketCap.Repo, []),
       # Start the endpoint when the application starts
-      supervisor(CoinMarketCapWeb.Endpoint, [])
+      supervisor(CoinMarketCapWeb.Endpoint, []),
+      # add this line
+      supervisor(Absinthe.Subscription, [CoinMarketCapWeb.Endpoint])
       # Start your own worker by calling: CoinMarketCap.Worker.start_link(arg1, arg2, arg3)
       # worker(CoinMarketCap.Worker, [arg1, arg2, arg3]),
     ]

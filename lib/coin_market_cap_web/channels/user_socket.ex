@@ -1,5 +1,6 @@
 defmodule CoinMarketCapWeb.UserSocket do
   use Phoenix.Socket
+  use Absinthe.Phoenix.Socket, schema: CoinMarketCapWeb.Schema
 
   ## Channels
   # channel "room:*", CoinMarketCapWeb.RoomChannel

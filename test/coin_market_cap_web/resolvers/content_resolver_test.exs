@@ -1,4 +1,4 @@
-defmodule CoinMarketCap.Resolvers.AnalyticsReviewTest do
+defmodule CoinMarketCap.Resolvers.ContentTest do
   use CoinMarketCap.DataCase
   import CoinMarketCap.Factory
   import Absinthe.Relay.Node

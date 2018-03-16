@@ -7,6 +7,7 @@ defmodule CoinMarketCapWeb.Resolvers.AssetTest do
   test "coin query should return coin by id" do
     coin = insert(:coin)
     query_fields = [:name, :symbol]
+
     query = """
     {
       coin(id: "#{to_global_id("Coin", coin.id)}") {
@@ -14,6 +15,7 @@ defmodule CoinMarketCapWeb.Resolvers.AssetTest do
       }
     }
     """
+
     response =
       build_conn()
       |> graphql_query(%{query: query})
