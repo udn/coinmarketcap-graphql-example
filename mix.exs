@@ -42,8 +42,9 @@ defmodule CoinMarketCap.Mixfile do
       {:absinthe, "~> 1.4"},
       {:absinthe_plug, "~> 1.4"},
       {:absinthe_phoenix, "~> 1.4"},
+      {:absinthe_relay, "~> 1.4.0-rc or ~> 1.4"},
       {:httpoison, "~> 1.0"},
-      {:ex_machina, "~> 2.2"},
+      {:ex_machina, "~> 2.2"}
     ]
   end
 
@@ -58,7 +59,7 @@ defmodule CoinMarketCap.Mixfile do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate", "test"],
-      "populate": ["ecto.reset", "populator.initial"],
+      populate: ["ecto.reset", "populator.initial"]
     ]
   end
 end

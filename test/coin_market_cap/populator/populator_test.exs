@@ -7,6 +7,7 @@ defmodule CoinMarketCap.PopulatorTest do
 
   test "&adapt_coin/1 should return adapted Coin structure" do
     exchanger = insert(:exchanger)
+
     cmc_coin = %{
       "24h_volume_usd" => "7234160000.0",
       "available_supply" => "16920125.0",
@@ -24,14 +25,15 @@ defmodule CoinMarketCap.PopulatorTest do
       "symbol" => "BTC",
       "total_supply" => "16920125.0"
     }
+
     coin = %{
       name: "Bitcoin",
       symbol: "BTC",
       change: -13.41,
-      market_cap: 133902654426.0,
+      market_cap: 133_902_654_426.0,
       price: 7913.81,
-      supply: 16920125.0,
-      volume: 7234160000.0,
+      supply: 16_920_125.0,
+      volume: 7_234_160_000.0,
       exchangers: [exchanger]
     }
 

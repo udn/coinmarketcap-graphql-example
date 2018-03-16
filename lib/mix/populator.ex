@@ -6,5 +6,4 @@ defmodule Mix.Tasks.Populator.Initial do
     Application.ensure_all_started(:coin_market_cap)
     CoinMarketCap.Populator.initial_populate()
   end
-
 end

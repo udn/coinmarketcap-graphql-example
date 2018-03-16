@@ -22,6 +22,7 @@ defmodule CoinMarketCap.DataCase do
       import Ecto.Changeset
       import Ecto.Query
       import CoinMarketCap.DataCase
+      import CoinMarketCap.GraphqlHelper
     end
   end
 

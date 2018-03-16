@@ -6,11 +6,10 @@ defmodule CoinMarkatCap.Factory.Exchanger do
       def exchanger_factory do
         %Exchanger{
           name: "Binance",
-          total_volume: 58312349,
+          total_volume: 58_312_349,
           url: "http://binance.com"
         }
       end
     end
   end
 end
-

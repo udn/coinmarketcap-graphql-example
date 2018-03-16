@@ -6,15 +6,14 @@ defmodule CoinMarketCap.Populator do
   alias CoinMarketCap.Assets
   alias CoinMarketCap.Exchangers
 
-
   def initial_populate() do
     exchanges = Exchangers.list_exchanger()
 
     HTTPoison.get!("https://api.coinmarketcap.com/v1/ticker/?limit=0")
-      |> Map.get(:body)
-      |> Poison.decode!()
-      |> Enum.map(fn coin -> adapt_coin(coin, exchanges) end)
-      |> Enum.map(&Assets.create_coin/1)
+    |> Map.get(:body)
+    |> Poison.decode!()
+    |> Enum.map(fn coin -> adapt_coin(coin, exchanges) end)
+    |> Enum.map(&Assets.create_coin/1)
   end
 
   def adapt_coin(coin, exchangers \\ []) do
@@ -29,9 +28,12 @@ defmodule CoinMarketCap.Populator do
       exchangers: exchangers
     }
   end
+
   defp to_float(coin, key) do
-    case Map.get(coin, key)  do
-      nil -> 0
+    case Map.get(coin, key) do
+      nil ->
+        0
+
       value ->
         {float, _} = Float.parse(value)
 

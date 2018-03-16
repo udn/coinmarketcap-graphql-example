@@ -9,7 +9,7 @@ defmodule CoinMarketCap.Exchangers.Exchanger do
     field :total_volume, :float
     field :url, :string
 
-    many_to_many :coins, Coin, join_through: "exchangers_coins"
+    many_to_many(:coins, Coin, join_through: "exchangers_coins")
 
     timestamps()
   end

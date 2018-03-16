@@ -14,7 +14,7 @@ defmodule CoinMarketCap.Assets.Coin do
     field :volume, :float
 
     has_many(:analytics_reviews, AnalyticsReview)
-    many_to_many :exchangers, Exchanger, join_through: "exchangers_coins"
+    many_to_many(:exchangers, Exchanger, join_through: "exchangers_coins")
 
     timestamps()
   end
