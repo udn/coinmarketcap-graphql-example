@@ -2,6 +2,9 @@ defmodule CoinMarketCap.AssetsTest do
   use CoinMarketCap.DataCase
 
   alias CoinMarketCap.Assets
+  alias CoinMarketCap.Repo
+
+  import CoinMarketCap.Factory
 
   describe "coins" do
     alias CoinMarketCap.Assets.Coin
@@ -13,7 +16,8 @@ defmodule CoinMarketCap.AssetsTest do
       price: 120.5,
       supply: 120.5,
       symbol: "some symbol",
-      volume: 120.5
+      volume: 120.5,
+      exchangers: [],
     }
     @update_attrs %{
       change: 456.7,
@@ -22,7 +26,8 @@ defmodule CoinMarketCap.AssetsTest do
       price: 456.7,
       supply: 456.7,
       symbol: "some updated symbol",
-      volume: 456.7
+      volume: 456.7,
+      exchangers: [],
     }
     @invalid_attrs %{
       change: nil,
@@ -31,26 +36,19 @@ defmodule CoinMarketCap.AssetsTest do
       price: nil,
       supply: nil,
       symbol: nil,
-      volume: nil
+      volume: nil,
+      exchangers: nil,
     }
 
-    def coin_fixture(attrs \\ %{}) do
-      {:ok, coin} =
-        attrs
-        |> Enum.into(@valid_attrs)
-        |> Assets.create_coin()
-
-      coin
-    end
-
     test "list_coins/0 returns all coins" do
-      coin = coin_fixture()
-      assert Assets.list_coins() == [coin]
+      coins = insert_list(2, :coin)
+
+      assert Assets.list_coins() |> Repo.preload(:exchangers) == coins
     end
 
     test "get_coin!/1 returns the coin with given id" do
-      coin = coin_fixture()
-      assert Assets.get_coin!(coin.id) == coin
+      coin = insert(:coin)
+      assert Assets.get_coin!(coin.id) |> Repo.preload(:exchangers) == coin
     end
 
     test "create_coin/1 with valid data creates a coin" do
@@ -69,7 +67,7 @@ defmodule CoinMarketCap.AssetsTest do
     end
 
     test "update_coin/2 with valid data updates the coin" do
-      coin = coin_fixture()
+      coin = insert(:coin)
       assert {:ok, coin} = Assets.update_coin(coin, @update_attrs)
       assert %Coin{} = coin
       assert coin.change == 456.7
@@ -82,19 +80,19 @@ defmodule CoinMarketCap.AssetsTest do
     end
 
     test "update_coin/2 with invalid data returns error changeset" do
-      coin = coin_fixture()
+      coin = insert(:coin)
       assert {:error, %Ecto.Changeset{}} = Assets.update_coin(coin, @invalid_attrs)
-      assert coin == Assets.get_coin!(coin.id)
+      assert coin == Assets.get_coin!(coin.id) |> Repo.preload(:exchangers)
     end
 
     test "delete_coin/1 deletes the coin" do
-      coin = coin_fixture()
+      coin = insert(:coin)
       assert {:ok, %Coin{}} = Assets.delete_coin(coin)
       assert_raise Ecto.NoResultsError, fn -> Assets.get_coin!(coin.id) end
     end
 
     test "change_coin/1 returns a coin changeset" do
-      coin = coin_fixture()
+      coin = insert(:coin)
       assert %Ecto.Changeset{} = Assets.change_coin(coin)
     end
   end

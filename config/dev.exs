@@ -44,3 +44,6 @@ config :coin_market_cap, CoinMarketCap.Repo,
   database: "coin_market_cap_dev",
   hostname: "localhost",
   pool_size: 10
+
+config :mix_test_watch,
+  clear: true

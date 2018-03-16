@@ -4,6 +4,7 @@ defmodule CoinMarketCap.Assets do
   """
 
   import Ecto.Query, warn: false
+  import Ecto.Changeset
   alias CoinMarketCap.Repo
 
   alias CoinMarketCap.Assets.Coin
@@ -52,6 +53,7 @@ defmodule CoinMarketCap.Assets do
   def create_coin(attrs \\ %{}) do
     %Coin{}
     |> Coin.changeset(attrs)
+    |> put_assoc(:exchangers, attrs.exchangers)
     |> Repo.insert()
   end
 

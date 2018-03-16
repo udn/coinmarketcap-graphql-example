@@ -44,7 +44,8 @@ defmodule CoinMarketCap.Mixfile do
       {:absinthe_phoenix, "~> 1.4"},
       {:absinthe_relay, "~> 1.4.0-rc or ~> 1.4"},
       {:httpoison, "~> 1.0"},
-      {:ex_machina, "~> 2.2"}
+      {:ex_machina, "~> 2.2"},
+      {:mix_test_watch, "~> 0.5", only: :dev, runtime: false}
     ]
   end
 
