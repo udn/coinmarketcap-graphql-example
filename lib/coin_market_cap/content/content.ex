@@ -4,6 +4,7 @@ defmodule CoinMarketCap.Content do
   """
 
   import Ecto.Query, warn: false
+  import Ecto.Changeset
   alias CoinMarketCap.Repo
 
   alias CoinMarketCap.Content.AnalyticsReview
@@ -52,6 +53,7 @@ defmodule CoinMarketCap.Content do
   def create_analytics_review(attrs \\ %{}) do
     %AnalyticsReview{}
     |> AnalyticsReview.changeset(attrs)
+    |> put_assoc(:coin, attrs.coin)
     |> Repo.insert()
   end
 

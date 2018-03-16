@@ -7,18 +7,6 @@ defmodule CoinMarketCap.GraphqlHelper do
   # We need to set the default endpoint for ConnTest
   @endpoint CoinMarketCapWeb.Endpoint
 
-  def mutation_skeleton(query) do
-    %{
-      "body" => %{
-        "query" => %{
-          "operationName" => "",
-          "query" => query,
-          "variables" => ""
-        }
-      }
-    }
-  end
-
   def graphql_query(conn, options) do
     conn
     |> post("/api/graphql", build_query(options[:query], options[:variables]))
@@ -52,6 +40,7 @@ defmodule CoinMarketCap.GraphqlHelper do
 
   defp build_query(query, variables) do
     %{
+      "operationName" => "",
       "query" => query,
       "variables" => variables
     }
