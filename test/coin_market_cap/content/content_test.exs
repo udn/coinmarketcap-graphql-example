@@ -2,13 +2,14 @@ defmodule CoinMarketCap.ContentTest do
   use CoinMarketCap.DataCase
 
   alias CoinMarketCap.Content
+  alias CoinMarketCap.Repo
 
   describe "analytics_reviews" do
     alias CoinMarketCap.Content.AnalyticsReview
 
-    @valid_attrs %{content: "some content", title: "some title"}
-    @update_attrs %{content: "some updated content", title: "some updated title"}
-    @invalid_attrs %{content: nil, title: nil}
+    @valid_attrs %{content: "some content", title: "some title", coin: nil}
+    @update_attrs %{content: "some updated content", title: "some updated title", coin: nil}
+    @invalid_attrs %{content: nil, title: nil, coin: nil}
 
     def analytics_review_fixture(attrs \\ %{}) do
       {:ok, analytics_review} =
@@ -21,12 +22,12 @@ defmodule CoinMarketCap.ContentTest do
 
     test "list_analytics_reviews/0 returns all analytics_reviews" do
       analytics_review = analytics_review_fixture()
-      assert Content.list_analytics_reviews() == [analytics_review]
+      assert Content.list_analytics_reviews() |> Repo.preload(:coin) == [analytics_review]
     end
 
     test "get_analytics_review!/1 returns the analytics_review with given id" do
       analytics_review = analytics_review_fixture()
-      assert Content.get_analytics_review!(analytics_review.id) == analytics_review
+      assert Content.get_analytics_review!(analytics_review.id) |> Repo.preload(:coin) == analytics_review
     end
 
     test "create_analytics_review/1 with valid data creates a analytics_review" do
@@ -58,7 +59,7 @@ defmodule CoinMarketCap.ContentTest do
       assert {:error, %Ecto.Changeset{}} =
                Content.update_analytics_review(analytics_review, @invalid_attrs)
 
-      assert analytics_review == Content.get_analytics_review!(analytics_review.id)
+      assert analytics_review == Content.get_analytics_review!(analytics_review.id) |> Repo.preload(:coin)
     end
 
     test "delete_analytics_review/1 deletes the analytics_review" do
