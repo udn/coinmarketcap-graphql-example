@@ -4,10 +4,7 @@ defmodule CoinMarketCapWeb.Schema.AssetTypes do
 
   alias CoinMarketCapWeb.Resolvers
 
-  object :coin do
-    @desc "Coin's id"
-    field :id, non_null(:id)
-
+  node object(:coin) do
     @desc "Coin's name"
     field :name, non_null(:string)
 

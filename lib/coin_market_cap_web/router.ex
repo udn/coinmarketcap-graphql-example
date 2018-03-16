@@ -12,7 +12,7 @@ defmodule CoinMarketCapWeb.Router do
       "/graphiql",
       Absinthe.Plug.GraphiQL,
       schema: CoinMarketCapWeb.Schema,
-      interface: :simple,
+      interface: :playground,
       context: %{pubsub: CoinMarketCap.Endpoint}
     )
 
